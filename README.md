@@ -1,4 +1,4 @@
-## PAC
+## P2P
 
 P2P is a PAC team from GDUT.
 
