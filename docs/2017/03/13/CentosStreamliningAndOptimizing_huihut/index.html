@@ -1,0 +1,319 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Centos 精简优化（多用于服务器） | P2P</title>
+  <meta name="author" content="P2P">
+  
+  <meta name="description" content="P2P is a PAC team from GDUT.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Centos 精简优化（多用于服务器）"/>
+  <meta property="og:site_name" content="P2P"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/notes/favicon.png" rel="icon">
+  <link rel="alternate" href="/notes/atom.xml" title="P2P" type="application/atom+xml">
+  <link rel="stylesheet" href="/notes/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/notes/">P2P</a></h1>
+  <h2><a href="/notes/">A PAC team from GDUT.</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/notes/">Home</a></li>
+    
+      <li><a href="/notes/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-03-12T23:20:24.000Z"><a href="/notes/2017/03/13/CentosStreamliningAndOptimizing_huihut/">2017-03-13</a></time>
+      
+      
+  
+    <h1 class="title">Centos 精简优化（多用于服务器）</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Centos的精简与优化，多用于服务端。</p>
+<a id="more"></a>
+<p><strong>Tips：最好在安装系统后，而不是在网站运行后执行，以免系统出现问题。</strong></p>
+<ol>
+<li>第一步、删除不必要的自带软件包</li>
+</ol>
+<pre><code>yum remove Deployment_Guide-en-US finger cups-libs cups ypbind
+yum remove bluez-libs desktop-file-utils ppp rp-pppoe wireless-tools irda-utils
+yum remove sendmail* samba* talk-server finger-server bind* xinetd
+yum remove nfs-utils nfs-utils-lib rdate fetchmail eject ksh mkbootdisk mtools
+yum remove syslinux tcsh startup-notification talk apmd rmt dump setserial portmap yp-tools
+yum groupremove &quot;Mail Server&quot; &quot;Games and Entertainment&quot; &quot;X Window System&quot; &quot;X Software Development&quot;
+yum groupremove &quot;Development Libraries&quot; &quot;Dialup Networking Support&quot;
+yum groupremove &quot;Games and Entertainment&quot; &quot;Sound and Video&quot; &quot;Graphics&quot; &quot;Editors&quot;
+yum groupremove &quot;Text-based Internet&quot; &quot;GNOME Desktop Environment&quot; &quot;GNOME Software Development&quot;
+</code></pre><ol>
+<li>第二步、升级centos系统</li>
+</ol>
+<pre><code>yum update #更新系统
+yum clean all #清理全部缓存文件
+</code></pre><ol>
+<li>第三步、禁用seLinux</li>
+</ol>
+<pre><code>sestatus #先执行看seLinux状态，如果不是disabled，就需要执行下面步骤，否则不要执行
+vi /etc/selinux/config
+SELINUX=disabled #禁用SeLinux
+SELINUX=enforcing #使用SeLinux
+</code></pre><ol>
+<li>第四步、禁止IPV6（执行后需要reboot重启）</li>
+</ol>
+<pre><code>vi /etc/modprobe.conf #打开文件，把下面两行加到最后
+alias net-pf-10 off
+alias ipv6 off
+</code></pre><ol>
+<li>第五步、初始化防火墙</li>
+</ol>
+<pre><code>touch /etc/sysconfig/iptables
+iptables -F
+iptables -X
+iptables -Z
+service iptables save
+service iptables restart
+</code></pre><ol>
+<li>第六步、禁止无用服务</li>
+</ol>
+<pre><code>#! /bin/bash
+service acpid off
+service atd stop
+service auditd stop
+service avahi-daemon stop
+service avahi-dnsconfd stop
+service bluetooth stop
+service conman stop
+service cpuspeed stop
+service cups stop
+service dnsmasq stop
+service dund stop
+service firstboot stop
+service hidd stop
+service httpd stop
+service ibmasm stop
+service ip6tables stop
+service irda stop
+service kdump stop
+service lm_sensors stop
+service mcstrans stop
+service messagebus stop
+service microcode_ctl stop
+service netconsole stop
+service netfs stop
+service netplugd stop
+service nfs stop
+service nfslock stop
+service nscd stop
+service ntpd stop
+service oddjobd stop
+service pand stop
+service pcscd stop
+service portmap stop
+service psacct stop
+service rdisc stop
+service restorecond stop
+service rpcgssd stop
+service rpcidmapd stop
+service rpcsvcgssd stop
+service saslauthd stop
+service sendmail stop
+service setroubleshoot stop
+service smb stop
+service vncserver stop
+service winbind stop
+service wpa_supplicant stop
+service xfs stop
+service ypbind stop
+service yum-updatesd stop
+chkconfig acpid off
+chkconfig atd off
+chkconfig auditd off
+chkconfig avahi-daemon off
+chkconfig avahi-dnsconfd off
+chkconfig bluetooth off
+chkconfig conman off
+chkconfig cpuspeed off
+chkconfig cups off
+chkconfig dnsmasq off
+chkconfig dund off
+chkconfig firstboot off
+chkconfig hidd off
+chkconfig httpd off
+chkconfig ibmasm off
+chkconfig ip6tables off
+chkconfig irda off
+chkconfig kdump off
+chkconfig lm_sensors off
+chkconfig mcstrans off
+chkconfig messagebus off
+chkconfig microcode_ctl off
+chkconfig netconsole off
+chkconfig netfs off
+chkconfig netplugd off
+chkconfig nfs off
+chkconfig nfslock off
+chkconfig nscd off
+chkconfig ntpd off
+chkconfig oddjobd off
+chkconfig pand off
+chkconfig pcscd off
+chkconfig portmap off
+chkconfig psacct off
+chkconfig rdisc off
+chkconfig restorecond off
+chkconfig rpcgssd off
+chkconfig rpcidmapd off
+chkconfig rpcsvcgssd off
+chkconfig saslauthd off
+chkconfig sendmail off
+chkconfig setroubleshoot off
+chkconfig smb off
+chkconfig vncserver off
+chkconfig winbind off
+chkconfig wpa_supplicant off
+chkconfig xfs off
+chkconfig ypbind off
+chkconfig yum-updatesd off
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/notes/categories/Notes/">Notes</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/notes/tags/Linux/">Linux</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Kommentare</h1>
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:PAC-P2P.github.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Kategorien</h3>
+  <ul class="entry">
+  
+    <li><a href="/notes/categories/Notes/">Notes</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/notes/tags/Git/">Git</a><small>1</small></li>
+  
+    <li><a href="/notes/tags/Linux/">Linux</a><small>2</small></li>
+  
+    <li><a href="/notes/tags/MPI/">MPI</a><small>1</small></li>
+  
+    <li><a href="/notes/tags/Makefile/">Makefile</a><small>1</small></li>
+  
+    <li><a href="/notes/tags/Parallel/">Parallel</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2017 P2P
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/notes/js/jquery.imagesloaded.min.js"></script>
+<script src="/notes/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/notes/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/notes/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
