@@ -68,10 +68,10 @@ npm run deploy
 
 ## 日常更博
 
-1. 写好博文
+1. 写好博文，使用 `Markdown` 写，可参考 [Markdown 简易入门教程](http://huihut.com/2017/01/25/MarkdownTutorial/)
 2. 转换到 `notes/temp` 目录下
 3. 克隆下最新工程：`git clone https://github.com/PAC-P2P/notes.git`
-4. 拷贝 `notes/temp/notes/source/_posts` 下的最新博文（.md文件）到 `notes/source/_posts` 下，覆盖你的原来的博文
+4. 拷贝 `notes/temp/notes/source/_posts` 下的最新博文（`.md`文件）到 `notes/source/_posts` 下，覆盖你的原来的博文
 5. 把你写好的博文放到 `notes/source/_posts` 下
 6. 转换到 `notes` 目录下
 7. 本地预览（可跳过）：`npm start`
