@@ -1,0 +1,226 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>并行计算笔记 | P2P</title>
+  <meta name="author" content="P2P">
+  
+  <meta name="description" content="P2P is a PAC team from GDUT.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="并行计算笔记"/>
+  <meta property="og:site_name" content="P2P"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/notes/favicon.png" rel="icon">
+  <link rel="alternate" href="/notes/atom.xml" title="P2P" type="application/atom+xml">
+  <link rel="stylesheet" href="/notes/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/notes/">P2P</a></h1>
+  <h2><a href="/notes/">A PAC team from GDUT.</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/notes/">Home</a></li>
+    
+      <li><a href="/notes/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-03-12T21:51:09.000Z"><a href="/notes/2017/03/13/ParallelComputingNotes_huihut/">2017-03-13</a></time>
+      
+      
+  
+    <h1 class="title">并行计算笔记</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>并行计算与并行应用的笔记。</p>
+<a id="more"></a> 
+<h2 id="并行计算（Parallel-Computing）"><a href="#并行计算（Parallel-Computing）" class="headerlink" title="并行计算（Parallel Computing）"></a>并行计算（Parallel Computing）</h2><p><strong>并行计算</strong>（平行计算）是相对于串行计算来说的。</p>
+<p>它是一种一次可执行多个指令的算法，目的是提高计算速度，及通过扩大问题求解规模，解决大型而复杂的计算问题。</p>
+<p>所谓并行计算可分为时间上的并行（流水线技术）和空间上的并行（多个处理器并发的执行计算）。 </p>
+<p><strong>基本思想</strong>是用多个处理器来协同求解同一问题，即将被求解的问题分解成若干个部分，各部分均由一个独立的处理机来并行计算。</p>
+<ul>
+<li>用于多核处理器</li>
+<li>缓存算法</li>
+</ul>
+<h2 id="并行算法（parallel-algorithms）"><a href="#并行算法（parallel-algorithms）" class="headerlink" title="并行算法（parallel algorithms）"></a>并行算法（parallel algorithms）</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
+<li><p>串行算法（serial algorithms）一般只有一种模型，即为随机存取机器模型（random access machine model）</p>
+</li>
+<li><p>并行算法及并行空间，有许多其他模型。如：动态多线程模型（dynamic multithreading），适用于多核机器中，为内存共享的编程而设计，不适用于分布式编程</p>
+</li>
+<li><p>衍生（spawn）：衍生的代码可以跟着父程序同时执行</p>
+</li>
+<li><p>同步（sync）：等待所有子程序完成，才执行这条指令</p>
+</li>
+<li><p>调度:把动态的、不断延伸的程序，映射到可用的处理器上</p>
+</li>
+<li><p>多线程计算，并行指令流，它其实是个有向无环图（DAG）</p>
+</li>
+</ul>
+<h3 id="并行时间"><a href="#并行时间" class="headerlink" title="并行时间"></a>并行时间</h3><p>设：Tp：任意程序运算在p个处理器上的运行时间</p>
+<p>T1；功（work），串行运行时间</p>
+<p>T∞：关键路径长度，DAG中最长路径</p>
+<ul>
+<li><p>Tp ≥ T1/p</p>
+</li>
+<li><p>Tp ≥ T∞</p>
+</li>
+</ul>
+<p>T1/Tp = Θ(p) —— 线性加速</p>
+<p>T1/Tp ＞ Θ(p) —— 超级线性加速 （对于这个模型不可能，其他有可能通过类似缓存的机制实现）</p>
+<p>P^ = T1/Tp —— 并行度，是能达到的最大速度，用功除以最短路径长度，是关键路径上可以并行完成的平均分量的功</p>
+<h2 id="调度算法"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法</h2><h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>调度的目的是：将计分配到p个处理器上，通常在实时操作系统上</p>
+<h3 id="贪心调度"><a href="#贪心调度" class="headerlink" title="贪心调度"></a>贪心调度</h3><p>在每一步做地尽可能多</p>
+<ol>
+<li>第一种：完整步骤：p个线程则用p个处理器</li>
+<li>第二种：不完整步骤：多于p个线程运行p个线程；少于p个线程就全部线程运行</li>
+</ol>
+<p>一个贪婪算法执行任意计算G，若功为T1，关键路径为T∞，p个处理器</p>
+<p>Tp ≤ T1/p + T∞</p>
+<ul>
+<li>T1/p：完整步骤</li>
+<li>T∞：不完整步骤</li>
+</ul>
+<p>贪心算法是线性加速度：P^ = T1/T∞</p>
+<h3 id="离线调度"><a href="#离线调度" class="headerlink" title="离线调度"></a>离线调度</h3><h3 id="在线调度"><a href="#在线调度" class="headerlink" title="在线调度"></a>在线调度</h3><h3 id="随机调度"><a href="#随机调度" class="headerlink" title="随机调度"></a>随机调度</h3><h2 id="Cilk"><a href="#Cilk" class="headerlink" title="Cilk"></a>Cilk</h2><p>Cilk —— 英特尔Cilk语言，多用于并行编程的语言</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">cilk int fib(int n) &#123;</div><div class="line">    if (n &lt; 2) &#123;</div><div class="line">        return n;</div><div class="line">    &#125;</div><div class="line">    else &#123;</div><div class="line">        int x, y;</div><div class="line">        </div><div class="line">        x = spawn fib(n - 1);</div><div class="line">        y = spawn fib(n - 2);</div><div class="line">        </div><div class="line">        sync;</div><div class="line">        </div><div class="line">        return x + y;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/notes/categories/Notes/">Notes</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/notes/tags/Parallel/">Parallel</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Kommentare</h1>
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:PAC-P2P.github.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Kategorien</h3>
+  <ul class="entry">
+  
+    <li><a href="/notes/categories/Notes/">Notes</a><small>5</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/notes/tags/Git/">Git</a><small>1</small></li>
+  
+    <li><a href="/notes/tags/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/notes/tags/MPI/">MPI</a><small>1</small></li>
+  
+    <li><a href="/notes/tags/Makefile/">Makefile</a><small>1</small></li>
+  
+    <li><a href="/notes/tags/Parallel/">Parallel</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2017 P2P
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/notes/js/jquery.imagesloaded.min.js"></script>
+<script src="/notes/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/notes/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/notes/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

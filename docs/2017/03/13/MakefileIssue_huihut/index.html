@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Makefile 问题及解决 | P2P</title>
+  <meta name="author" content="P2P">
+  
+  <meta name="description" content="P2P is a PAC team from GDUT.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Makefile 问题及解决"/>
+  <meta property="og:site_name" content="P2P"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/notes/favicon.png" rel="icon">
+  <link rel="alternate" href="/notes/atom.xml" title="P2P" type="application/atom+xml">
+  <link rel="stylesheet" href="/notes/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/notes/">P2P</a></h1>
+  <h2><a href="/notes/">A PAC team from GDUT.</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/notes/">Home</a></li>
+    
+      <li><a href="/notes/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-03-12T21:59:10.000Z"><a href="/notes/2017/03/13/MakefileIssue_huihut/">2017-03-13</a></time>
+      
+      
+  
+    <h1 class="title">Makefile 问题及解决</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Makefile遇到的问题及解决方案。</p>
+<a id="more"></a> 
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>makefile文件的clean出错</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/MakefileError_Clean1.png" alt=""></p>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p><code>clean</code>下面的那句命令没有缩进，应该用<code>[Tab]</code>缩进</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/MakefileError_Clean3.png" alt=""></p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/MakefileError_Clean4.png" alt=""></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>利用 <a href="https://www.google.com/" target="_blank" rel="external">Google</a>、<a href="http://stackoverflow.com/" target="_blank" rel="external">stackoverflow</a> 等含金量高的问题解决平台</li>
+<li>注意语法规范</li>
+</ul>
+<hr>
+<h2 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h2><p><img src="http://ojlsgreog.bkt.clouddn.com/MakefileError_Clean2.png" alt=""></p>
+<h3 id="解决-1"><a href="#解决-1" class="headerlink" title="解决"></a>解决</h3><p><code>newhello:hello.o hello_fn.o</code> 中的<code>newhello</code>应该写成<code>hello</code>，应该与<code>hello.c</code>中的名字一样</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/MakefileError_Clean3.png" alt=""></p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/MakefileError_helloc2.png" alt=""></p>
+<h3 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>注意编译运行的文件名</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/notes/categories/Notes/">Notes</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/notes/tags/Makefile/">Makefile</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Kommentare</h1>
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:PAC-P2P.github.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Kategorien</h3>
+  <ul class="entry">
+  
+    <li><a href="/notes/categories/Notes/">Notes</a><small>5</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/notes/tags/Git/">Git</a><small>1</small></li>
+  
+    <li><a href="/notes/tags/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/notes/tags/MPI/">MPI</a><small>1</small></li>
+  
+    <li><a href="/notes/tags/Makefile/">Makefile</a><small>1</small></li>
+  
+    <li><a href="/notes/tags/Parallel/">Parallel</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2017 P2P
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/notes/js/jquery.imagesloaded.min.js"></script>
+<script src="/notes/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/notes/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/notes/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
