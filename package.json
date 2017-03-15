@@ -5,6 +5,11 @@
   "hexo": {
     "version": "3.2.2"
   },
+  "scripts":{
+    "start": "hexo s",
+    "deploy": "hexo g && git add -A && git commit -m 'update' && git push",
+    "g": "hexo g"
+  },
   "dependencies": {
     "hexo": "^3.2.0",
     "hexo-generator-archive": "^0.1.4",

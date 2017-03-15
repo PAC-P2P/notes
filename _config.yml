@@ -75,7 +75,3 @@ addlink:
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  message: P2P
-  repo: https://github.com/PAC-P2P/notes.git
-  branch: master
