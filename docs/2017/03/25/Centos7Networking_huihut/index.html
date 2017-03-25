@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Makefile 问题及解决 | P2P</title>
+  <title>Centos 7 设置开机自动联网 | P2P</title>
   <meta name="author" content="P2P">
   
   <meta name="description" content="P2P is a PAC team from GDUT.">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Makefile 问题及解决"/>
+  <meta property="og:title" content="Centos 7 设置开机自动联网"/>
   <meta property="og:site_name" content="P2P"/>
 
   
@@ -51,36 +51,44 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-03-12T21:59:10.000Z"><a href="/notes/2017/03/13/MakefileIssue_huihut/">2017-03-13</a></time>
+        <time datetime="2017-03-25T02:59:48.000Z"><a href="/notes/2017/03/25/Centos7Networking_huihut/">2017-03-25</a></time>
       
       
   
-    <h1 class="title">Makefile 问题及解决</h1>
+    <h1 class="title">Centos 7 设置开机自动联网</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>Makefile遇到的问题及解决方案。</p>
-<a id="more"></a> 
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>makefile文件的clean出错</p>
-<p><img src="http://ojlsgreog.bkt.clouddn.com/MakefileError_Clean1.png" alt=""></p>
-<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p><code>clean</code>下面的那句命令没有缩进，应该用<code>[Tab]</code>缩进</p>
-<p><img src="http://ojlsgreog.bkt.clouddn.com/MakefileError_Clean3.png" alt=""></p>
-<p><img src="http://ojlsgreog.bkt.clouddn.com/MakefileError_Clean4.png" alt=""></p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
-<li>利用 <a href="https://www.google.com/" target="_blank" rel="external">Google</a>、<a href="http://stackoverflow.com/" target="_blank" rel="external">stackoverflow</a> 等含金量高的问题解决平台</li>
-<li>注意语法规范</li>
-</ul>
-<hr>
-<h2 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h2><p><img src="http://ojlsgreog.bkt.clouddn.com/MakefileError_Clean2.png" alt=""></p>
-<h3 id="解决-1"><a href="#解决-1" class="headerlink" title="解决"></a>解决</h3><p><code>newhello:hello.o hello_fn.o</code> 中的<code>newhello</code>应该写成<code>hello</code>，应该与<code>hello.c</code>中的名字一样</p>
-<p><img src="http://ojlsgreog.bkt.clouddn.com/MakefileError_Clean3.png" alt=""></p>
-<p><img src="http://ojlsgreog.bkt.clouddn.com/MakefileError_helloc2.png" alt=""></p>
-<h3 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h3><ul>
-<li>注意编译运行的文件名</li>
-</ul>
+        <p>Centos 7 设置开机自动联网</p>
+<a id="more"></a>
+<pre><code>ls /etc/sysconfig/network-scripts/
 
+# 找到ifcfg-e`npxxx`，如我的是`rk-scripts`
+
+sudo vim /etc/sysconfig/network-scripts/ifcfg-enp4s0
+
+# 一般文件里面有下面这些 
+TYPE=Ethernet
+BOOTPROTO=dhcp
+DEFROUTE=yes
+PEERDNS=yes
+PEERROUTES=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_PEERDNS=yes
+IPV6_PEERROUTES=yes
+IPV6_FAILURE_FATAL=no
+NAME=enp4s0
+UUID=4d0c8a3a-50bf-497a-9b04-f5fba085ef08
+DEVICE=enp4s0
+ONBOOT=no
+
+# 把`ONBOOT=no`该为`  ONBOOT=yes`，保存即可。
+</code></pre>
       
     </div>
     <footer>
@@ -94,7 +102,7 @@
         
   
   <div class="tags">
-    <a href="/notes/tags/Makefile/">Makefile</a>
+    <a href="/notes/tags/Linux/">Linux</a>
   </div>
 
         
