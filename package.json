@@ -7,7 +7,7 @@
   },
   "scripts":{
     "start": "hexo s",
-    "deploy": "hexo g && git add -A && git commit -m 'update' && git push -f -u origin master",
+    "deployF": "hexo g && git add -A && git commit -m 'update' && git push -f -u origin master",
     "generate": "hexo g"
   },
   "dependencies": {
