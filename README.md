@@ -18,33 +18,25 @@ P2P is a PAC team from GDUT.
 
 克隆 notes：以下两句任意执行一句（貌似 https 的更快）
 
+	git clone https://github.com/PAC-P2P/notes.git
 
-```
-git clone https://github.com/PAC-P2P/notes.git
-
-git clone git@github.com:PAC-P2P/notes.git
-
-```
+	git clone git@github.com:PAC-P2P/notes.git
 
 进入 notes 目录
 
+	cd notes
 
-```
-cd notes
-```
 
 ### 初始化及配置依赖
 
 初始化 git
 
-```
-git init
-```
-安装依赖
 
-``` 
-npm install --unsafe-perm --verbose -g hexo	
-```
+	git init
+
+安装依赖
+ 
+	npm install --unsafe-perm --verbose -g hexo	
 
 ### 创建分支
 
