@@ -46,75 +46,93 @@ git init
 npm install --unsafe-perm --verbose -g hexo	
 ```
 
+### 创建分支
+
+	# huihut 改为你的用户名
+	git branch huihut
+	
+### 转换分支
+
+	# huihut 改为你的分支名
+	git checkout huihut
+
 ### 写博文
 
 
 修改 source/_posts 的文件
 
+	# 新建 .md 博文，名字为"FileName"（自己改）
+	hexo new "FileName"	
 
-### 预览及部署
+### 构建静态文件
 
-本地预览
+	hexo g
+	
+### 添加全部文件到本地仓库
 
-```
-npm start
-```
+	git add .
 
-强制push到远程仓库(不推荐)
+### 将文件提交到仓库
+	
+	# "FileName" 写你做的修改
+	git commit -m "Add FileName"
 
-```
-npm run deploy
-```
+### 本地预览（可跳过）
 
-## 更博到自己的分支（推荐）
+	npm start
 
-1. 写好博文，使用 `Markdown` 写，可参考 [Markdown 简易入门教程](http://huihut.com/2017/01/25/)
+### 将本地仓库的内容推送到远程仓库
 
-		# 转到你的 notes 文件夹， ~/code/git 改为自己的路径
-		cd ~/code/git/notes
+	# huihut 改为自己的分支
+	git push -u origin huihut
+	
+### 分支合并
+
+	# 把master分支合并到huihut分支
+	git merge master huihut
+	
+### 为日常更博做准备
+
+在 `notes` 同级目录下创建 `temp` 文件夹，用来存放`git`下来的最新博文
+
+
+## 日常更博
+
+1. 写好博文，并放到 `notes/source/_posts` 下，使用 `Markdown` 写，可参考 [Markdown 简易入门教程](http://huihut.com/2017/01/25/)
 		
-		# 新建 .md 博文，名字为"FileName"（自己改）
-		hexo new "FileName"
-
-2. 在 `notes` 同级目录下创建 `temp` 文件夹，进入 `temp`  
-
-		# 到 notes 同级目录
-		cd ../
-		
-		# 新建 temp 文件夹
-		mkdir temp
-		
-		# 进入temp
-		cd temp
-		
-3. 克隆下最新工程：
+3. 到与 `notes` 同级的 `temp` 下，删除之前`git`下来的旧`notes`，并克隆下最新工程：
 
 		git clone https://github.com/PAC-P2P/notes.git
 
-4. 拷贝 `temp/notes/source/_posts` 下的最新博文（.md文件）到 `notes/source/_posts` 下，覆盖你的原来的博文
-
-		cp ./notes/source/_posts/*.md ../notes/source/_posts
-
-5. 把你写好的博文放到 `notes/source/_posts` 下
+4. 拷贝 `temp/notes/source/_posts` 下的最新博文（.md文件）到 `notes/source/_posts` 下，覆盖除了你刚写的博文外的其他博文
 
 6. 转换到 `notes` 目录下
-
-		# 转到你的 notes 文件夹， ~/code/git 改为自己的路径
-		cd ~/code/git/notes
-
-7. 新建分支
-
-		# huihut 改为你的用户名
-		git branch huihut
 		
-8. 转换分支
+8. 转换到你的分支
 
 		git checkout huihut
 
+9. 构建静态文件
 
+		hexo g
+	
+10. 添加全部文件到本地仓库缓冲区
 
-## 强制push到远程仓库(不推荐)
+		git add .
 
-	npm run deploy
+11. 将文件提交到本地仓库
+	
+		# "FileName" 写你做的修改
+		git commit -m "Add FileName"
+		
+12. 将本地仓库的内容推送到远程仓库
+
+		# huihut 改为自己的分支
+		git push origin huihut
+	
+13. 分支合并
+
+		# 把master分支合并到huihut分支
+		git merge master huihut
 	
 	
