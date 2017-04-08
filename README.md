@@ -127,4 +127,12 @@ P2P is a PAC team from GDUT.
 		# 把master分支合并到huihut分支
 		git merge master huihut
 	
+14. 在 Github 上提交合并请求
+
+	* 转换到自己的分支，Pull request
 	
+		![](http://ojlsgreog.bkt.clouddn.com/P2PPullRequest.jpg)
+
+	* 写合并信息，Pull request
+
+		![](http://ojlsgreog.bkt.clouddn.com/P2PPullRequest2.jpg)
