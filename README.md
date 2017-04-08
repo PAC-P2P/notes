@@ -60,20 +60,61 @@ npm install --unsafe-perm --verbose -g hexo
 npm start
 ```
 
-部署到 github
+强制push到远程仓库(不推荐)
 
 ```
 npm run deploy
 ```
 
-## 日常更博
+## 更博到自己的分支（推荐）
 
-1. 写好博文，使用 `Markdown` 写，可参考 [Markdown 简易入门教程](http://huihut.com/2017/01/25/MarkdownTutorial/)
+1. 写好博文，使用 `Markdown` 写，可参考 [Markdown 简易入门教程](http://huihut.com/2017/01/25/)
+
+		# 转到你的 notes 文件夹， ~/code/git 改为自己的路径
+		cd ~/code/git/notes
+		
+		# 新建 .md 博文，名字为"FileName"（自己改）
+		hexo new "FileName"
+
 2. 在 `notes` 同级目录下创建 `temp` 文件夹，进入 `temp`  
-3. 克隆下最新工程：`git clone https://github.com/PAC-P2P/notes.git`
-4. 拷贝 `temp/notes/source/_posts` 下的最新博文（`.md`文件）到 `notes/source/_posts` 下，覆盖你的原来的博文
-5. 把你写好的博文放到 `notes/source/_posts` 下
-6. 转换到 `notes` 目录下
-7. 本地预览（可跳过）：`npm start`
-8. 部署到 github：`npm run deploy`
 
+		# 到 notes 同级目录
+		cd ../
+		
+		# 新建 temp 文件夹
+		mkdir temp
+		
+		# 进入temp
+		cd temp
+		
+3. 克隆下最新工程：
+
+		git clone https://github.com/PAC-P2P/notes.git
+
+4. 拷贝 `temp/notes/source/_posts` 下的最新博文（.md文件）到 `notes/source/_posts` 下，覆盖你的原来的博文
+
+		cp ./notes/source/_posts/*.md ../notes/source/_posts
+
+5. 把你写好的博文放到 `notes/source/_posts` 下
+
+6. 转换到 `notes` 目录下
+
+		# 转到你的 notes 文件夹， ~/code/git 改为自己的路径
+		cd ~/code/git/notes
+
+7. 新建分支
+
+		# huihut 改为你的用户名
+		git branch huihut
+		
+8. 转换分支
+
+		git checkout huihut
+
+
+
+## 强制push到远程仓库(不推荐)
+
+	npm run deploy
+	
+	
