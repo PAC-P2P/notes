@@ -131,8 +131,8 @@ P2P is a PAC team from GDUT.
 
 	* 转换到自己的分支，Pull request
 	
-		![](http://ojlsgreog.bkt.clouddn.com/P2PPullRequest.jpg)
+		![Pull request1](http://ojlsgreog.bkt.clouddn.com/P2PPullRequest1.jpg)
 
 	* 写合并信息，Pull request
 
-		![](http://ojlsgreog.bkt.clouddn.com/P2PPullRequest2.jpg)
+		![Pull request2](http://ojlsgreog.bkt.clouddn.com/P2PPullRequest2.jpg)
