@@ -90,7 +90,7 @@ P2P is a PAC team from GDUT.
 
 ## 日常更博
 
-1. 写好博文，并放到 `notes/source/_posts` 下，使用 `Markdown` 写，可参考 [Markdown 简易入门教程](http://huihut.com/2017/01/25/)
+1. 写好博文，并放到 `notes/source/_posts` 下，使用 `Markdown` 写，可参考 [Markdown 简易入门教程](https://blog.huihut.com/2017/01/25/MarkdownTutorial/)
 		
 3. 到与 `notes` 同级的 `temp` 下，删除之前`git`下来的旧`notes`，并克隆下最新工程：
 
